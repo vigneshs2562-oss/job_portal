@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block title %}Profile{% endblock %}{% block content %}
+<div class="form-card"><h1>My Profile</h1><form method="post"><input type="hidden" name="csrf_token" value="{{csrf_token()}}"><label>Name<input value="{{user.full_name}}" disabled></label><label>Email<input value="{{user.email}}" disabled></label><label>Phone<input name="phone" value="{{user.phone}}"></label>
+{% if user.role=='job_seeker' %}<label>Skills<textarea name="skills">{{user.skills or ''}}</textarea></label><label>Experience<textarea name="experience">{{user.experience or ''}}</textarea></label><label>Education<textarea name="education">{{user.education or ''}}</textarea></label>{% endif %}
+<button class="btn">Save Profile</button></form></div>{% endblock %}

@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block title %}JobSphere — Find your next opportunity{% endblock %}
+{% block content %}
+<section class="hero"><div><span class="eyebrow">SMARTER JOB SEARCH</span><h1>Find a job that fits your future.</h1><p>Search opportunities, apply securely and track every application in one place.</p>
+<form class="search" action="{{ url_for('jobs') }}"><input name="q" placeholder="Job title or skill"><input name="location" placeholder="Location"><button>Search Jobs</button></form></div></section>
+<h2>Recent Jobs</h2><div class="grid">{% for job in jobs %}<article class="card"><span class="tag">{{ job.job_type }}</span><h3>{{ job.title }}</h3><p class="muted">{{ job.company_name }} · {{ job.location }}</p><p>{{ job.description[:140] }}{% if job.description|length>140 %}…{% endif %}</p><strong>₹{{ "{:,}".format(job.salary) if job.salary else "Not disclosed" }}</strong><a class="btn outline" href="{{ url_for('job_details',job_id=job.id) }}">View Job</a></article>{% else %}<p>No jobs posted yet.</p>{% endfor %}</div>
+{% endblock %}

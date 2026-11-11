@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block title %}My Dashboard{% endblock %}{% block content %}
+<div class="dashhead"><div><h1>Hello, {{current_user}}</h1><p class="muted">Track your applications.</p></div><a class="btn" href="{{url_for('jobs')}}">Find Jobs</a></div>
+<section class="card"><h2>Applications</h2><div class="tablewrap"><table><tr><th>Job</th><th>Company</th><th>Applied</th><th>Status</th></tr>{% for a in applications %}<tr><td>{{a.title}}</td><td>{{a.company_name}}</td><td>{{a.applied_at}}</td><td><span class="status {{a.status|lower}}">{{a.status}}</span></td></tr>{% else %}<tr><td colspan="4">No applications yet.</td></tr>{% endfor %}</table></div></section>
+{% endblock %}

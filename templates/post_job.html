@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block title %}Post Job{% endblock %}{% block content %}
+<div class="form-card wide"><h1>Post a job</h1><form method="post"><input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+<label>Job Title<input name="title" required></label><label>Location<input name="location" required></label><label>Salary (annual, ₹)<input type="number" name="salary" min="0" value="0"></label>
+<label>Job Type<select name="job_type">{% for t in ['Full-time','Part-time','Contract','Internship','Remote'] %}<option>{{t}}</option>{% endfor %}</select></label>
+<label>Required Skills<input name="skills" placeholder="Python, SQL, Excel"></label><label>Description<textarea name="description" required></textarea></label><label>Requirements<textarea name="requirements"></textarea></label><button class="btn">Publish Job</button></form></div>{% endblock %}

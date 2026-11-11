@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block title %}Verify OTP{% endblock %}{% block content %}
+<div class="form-card"><h1>Verify your email</h1><p>OTP sent to <b>{{ email }}</b>. It expires in 5 minutes.</p>
+<form method="post"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><input class="otp" name="otp" inputmode="numeric" maxlength="6" placeholder="000000" required><button class="btn">Verify OTP</button></form>
+<form method="post" action="{{ url_for('resend_otp') }}" class="resend"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button id="resendBtn" class="linkbtn" type="submit">Resend OTP</button><span id="timer"></span></form>
+</div>{% endblock %}

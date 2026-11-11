@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block title %}{{job.title}}{% endblock %}{% block content %}
+<div class="detail"><span class="tag">{{job.job_type}}</span><h1>{{job.title}}</h1><p class="lead">{{job.company_name}} · {{job.location}} · ₹{{"{:,}".format(job.salary) if job.salary else "Not disclosed"}}</p>
+<h2>Description</h2><p class="pre">{{job.description}}</p><h2>Requirements</h2><p class="pre">{{job.requirements or "Not specified."}}</p><h2>Skills</h2><p>{{job.skills or "Not specified."}}</p>
+{% if current_role == 'job_seeker' %}<div class="applybox"><h2>Apply</h2><form method="post" enctype="multipart/form-data" action="{{url_for('apply',job_id=job.id)}}"><input type="hidden" name="csrf_token" value="{{csrf_token()}}"><input type="file" name="resume" accept=".pdf,application/pdf" required><button class="btn">Apply with Resume</button></form></div>{% elif not current_user %}<a class="btn" href="{{url_for('login')}}">Login to apply</a>{% endif %}
+</div>{% endblock %}
